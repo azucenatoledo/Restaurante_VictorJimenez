@@ -10,6 +10,7 @@ from django.shortcuts import reverse
 # Create your models here.
 User = get_user_model()
 class Bebidavariacion(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nombre=models.CharField(max_length=50)
     def __str__(self):
         return self.nombre
@@ -19,6 +20,7 @@ class Direccion(models.Model):
         ('B','Facturacion'),
         ('S','Envio'),
     )
+    id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     direccion_line_1 = models.CharField(max_length=150)
     direccion_line_2 = models.CharField(max_length=150)
@@ -33,6 +35,7 @@ class Direccion(models.Model):
         verbose_name_plural='Direcciones'
     
 class Producto(models.Model):
+    id = models.BigAutoField(primary_key=True)
     title= models.CharField(max_length=150)
     slug=models.SlugField(unique=True)
     image= models.ImageField(upload_to='product_images')
@@ -52,6 +55,7 @@ class Producto(models.Model):
         return "{:.2f}".format(self.precio/100)
 #clase inetermedio
 class ordenIten(models.Model):
+    id = models.BigAutoField(primary_key=True)
     order=models.ForeignKey("Orden",related_name='items',on_delete=models.CASCADE)
     producto= models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField(default=1)
@@ -65,6 +69,7 @@ class ordenIten(models.Model):
         return "{:.2f}".format(precio/100)
 
 class Orden(models.Model):
+    id = models.BigAutoField(primary_key=True)
     user=models.ForeignKey(User,blank=True, null=True, on_delete=models.CASCADE)
     incio_fecha=models.DateTimeField(auto_now_add=True)
     orden_fecha=models.DateTimeField(blank=True, null=True)
@@ -100,6 +105,7 @@ class Orden(models.Model):
 
 
 class Pago(models.Model):
+    id = models.BigAutoField(primary_key=True)
     orden= models.ForeignKey(Orden, on_delete=models.CASCADE, related_name='payments')
     metodo_pago = models.CharField(max_length=20, choices=(
         ('Paypal','Paypal'),

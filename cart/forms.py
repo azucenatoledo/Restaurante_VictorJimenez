@@ -52,7 +52,7 @@ class AdressForm(forms.Form):
         data = self.cleaned_data
         selecionar_direccion_de_envio=data.get('selecionar_direccion_de_envio',None)
         if selecionar_direccion_de_envio is None:
-            if not data.get('direccion_de_envio_1',None):
+            if not data.get('dirección_de_envio_1',None):
                 self.add_error("direccion_de_envio_1","Por favor complete este campo")
 
             if not data.get('direccion_de_envio_2',None):
