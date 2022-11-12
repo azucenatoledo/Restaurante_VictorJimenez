@@ -99,21 +99,21 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+if not DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'OPTIONS': {
+                'options': '-c search_path=django,public'
+            },
+            'NAME': 'restaurante',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=django,public'
         },
-        'NAME': 'restaurante',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '5432',
-
-    },
-}
+    }
 
 
 # Password validation
@@ -233,10 +233,10 @@ if DEBUG is False:
     EMAIL_USE_TLS = True
     # Database
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+    #configuracion para render
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/mysite',
+            default='postgresql://postgres:postgres@localhost:5432/postgres',
             conn_max_age=600
         )}
 
