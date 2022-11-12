@@ -1,6 +1,6 @@
 
 from django.conf import settings
-from django.conf.urls.static import static #archivos de ccs 
+
 from django.contrib import admin
 from django.urls import path,include
 from django.contrib.auth.models import User
@@ -32,14 +32,16 @@ urlpatterns = [
     path('contact/',views.ContactView.as_view(),name='contact'),
     path('cart/',include ('cart.urls',namespace='cart')),
     path('profile/',views.ProfilView.as_view(), name='profile'),
-    path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    #path('api/', include(router.urls)),
+    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
+
 if settings.DEBUG:
-    #ARICHIVOS ESTATICOS COMO CSS
+    from django.conf.urls.static import static
+    #archivos estaticos CSS
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    #ARCHIVOS STATICOS COMO MEDIA 
-    
+    #archivos estaticos MEDIA
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
     
