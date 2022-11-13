@@ -1,5 +1,5 @@
 django==3.2.16
-pillow
+pillow=9.2.0
 psycopg2-binary==2.9.1
 django-environ==0.4.5
 django-crispy-forms==1.9.1
