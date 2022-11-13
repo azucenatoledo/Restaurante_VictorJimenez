@@ -16,8 +16,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 #Ambeinte de preuba
 #SECRET_KEY = env('SECRET_KEY')
-DEBUG= True
-#DEBUG = 'RENDER' not in os.environ
+DEBUG = 'RENDER' not in os.environ
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -100,8 +99,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-'''
-if DEBUG :
+if DEBUG:
 
     DATABASES = {
         'default': {
@@ -117,7 +115,7 @@ if DEBUG :
 
         },
     }
-'''
+
 
 
 
@@ -182,11 +180,11 @@ PAYPAL_SECRET_KET=env('PAYPAL_SANDBOX_SECRET_KEY')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
-STATIC_ROOT = os.path.join(BASE_DIR,"static_root")
 
+STATICFILES_DIRS =[os.path.join(BASE_DIR,"static")]
+STATIC_ROOT = os.path.join(BASE_DIR,"static_root")
 MEDIA_URL = '/media/'
-MEDIA_ROOT = [os.path.join(BASE_DIR, "media")]
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
 '''
@@ -212,7 +210,7 @@ SESSION_SAVE_EVERY_REQUEST = True  # actualizar tiempo de vida en cada request
 
 
 
-if DEBUG is True:
+if DEBUG is False:
 
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
