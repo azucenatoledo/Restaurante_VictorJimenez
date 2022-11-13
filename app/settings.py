@@ -99,6 +99,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+'''
 if DEBUG:
 
     DATABASES = {
@@ -115,7 +116,7 @@ if DEBUG:
 
         },
     }
-
+'''
 
 
 
@@ -210,7 +211,7 @@ SESSION_SAVE_EVERY_REQUEST = True  # actualizar tiempo de vida en cada request
 
 
 
-if DEBUG is False:
+if DEBUG is True:
 
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
