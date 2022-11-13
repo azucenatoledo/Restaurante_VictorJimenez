@@ -16,7 +16,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 #Ambeinte de preuba
 #SECRET_KEY = env('SECRET_KEY')
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
+#DEBUG = 'RENDER' not in os.environ
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
