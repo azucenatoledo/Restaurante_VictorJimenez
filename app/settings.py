@@ -2,6 +2,8 @@ import os
 from pickle import TRUE
 import environ
 import dj_database_url
+import cloudinary_storage
+
 env = environ.Env()
 
 # Leer el archivo .env
@@ -11,23 +13,24 @@ environ.Env.read_env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 #Prodciion en render
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+#SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 
 #Ambeinte de preuba
-#SECRET_KEY = env('SECRET_KEY')
-DEBUG = True
-#DEBUG = 'RENDER' not in os.environ
+SECRET_KEY = env('SECRET_KEY')
+#DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-#
 
 ALLOWED_HOSTS = []
+
 #hostaname de render
+
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+   ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -54,7 +57,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 DEFAULT_FROM_EMAIL=env('DEFAULT_FROM_EMAIL')
@@ -100,24 +104,22 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-'''
-if DEBUG:
 
+if not DEBUG :
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'OPTIONS': {
                 'options': '-c search_path=django,public'
             },
-            'NAME': 'restaurante',
+            'NAME': 'restaurante2',
             'USER': 'postgres',
             'PASSWORD': 'postgres',
             'HOST': 'localhost',
             'PORT': '5432',
-
         },
     }
-'''
+
 
 
 
@@ -150,14 +152,14 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 #configuracion de allauth para seguridad en el sistema
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email' #Registro por usuario y contraseña
+ACCOUNT_EMAIL_REQUIRED = True   # Que se tenga que verificar el correo
+ACCOUNT_USERNAME_REQUIRED = True    #Que se pida el nombre de usuario
 ACCOUNT_PRESERVE_USERNAME_CASING =True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =3
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Verificacion'
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3 #limite de intentos de inicio de sesion
 
 
 # Internationalization
@@ -181,28 +183,21 @@ PAYPAL_SECRET_KET=env('PAYPAL_SANDBOX_SECRET_KEY')
 #arichivos estaticos
 
 STATIC_URL = '/static/'
-
-
 STATICFILES_DIRS =[os.path.join(BASE_DIR,"static")]
 STATIC_ROOT = os.path.join(BASE_DIR,"static_root")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env('CLOUD_NAME'),
+    'API_KEY': env('API_KEY'),
+    'API_SECRET': env('API_SECRET')
+}
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-'''
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-'''
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
-
-
 
 #segurida en el cierre de sesion
 SESSION_COOKIE_AGE = 60 * 60 #Tiempo de vida de la sesión en segundos -> x Minutos x 60segundos.  (60min*60seg)
@@ -210,10 +205,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True #Si sale del navegador, cerrar sesión
 SESSION_SAVE_EVERY_REQUEST = True  # actualizar tiempo de vida en cada request
 
 
-
-
-if DEBUG is True:
-
+if DEBUG is False:
+    print(DEBUG)
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
@@ -221,9 +214,9 @@ if DEBUG is True:
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_SECONDS = 31536000
     SECURE_REDIRECT_EXEMPT = []
-    SECURE_SSL_REDIRECT = True
+    SECURE_SSL_REDIRECT = TRUE
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
+    print(SECURE_SSL_REDIRECT)
 
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     ####
@@ -234,7 +227,7 @@ if DEBUG is True:
     EMAIL_USE_TLS = True
     # Database
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-    #configuracion para render
+    #configuracion para render en base de datos render
     DATABASES = {
         'default': dj_database_url.config(
             default='postgresql://postgres:postgres@localhost:5432/postgres',

@@ -6,10 +6,9 @@ from django.urls import path,include
 from django.contrib.auth.models import User
 from django.conf.urls.static import static
 from rest_framework import routers, serializers, viewsets
-from rest_framework import routers
 from . import viewss
-
 from core import views
+from django.conf.urls import handler400,handler403,handler404,handler500
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -39,4 +38,4 @@ urlpatterns = [
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
     
-    
+handler404= viewss.Error404View.as_view()
