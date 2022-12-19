@@ -20,6 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = env('SECRET_KEY')
 # DEBUG = False
 DEBUG = 'RENDER' not in os.environ
+print(DEBUG)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -194,7 +195,7 @@ SESSION_COOKIE_AGE = 60 * 60  # Tiempo de vida de la sesión en segundos -> x Mi
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True  # Si sale del navegador, cerrar sesión
 SESSION_SAVE_EVERY_REQUEST = True  # actualizar tiempo de vida en cada request
 
-if DEBUG:
+if DEBUG is True:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
