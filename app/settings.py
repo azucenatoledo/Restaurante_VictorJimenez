@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 
-# Ambeinte de preuba
+# Ambeinte de prueba
 SECRET_KEY = env('SECRET_KEY')
 #DEBUG = True
 DEBUG = 'RENDER' not in os.environ
@@ -104,8 +104,9 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
-if not DEBUG:
+
+if DEBUG:
+    print('Base de datos')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -119,7 +120,7 @@ if not DEBUG:
             'PORT': '5432',
         },
     }
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
