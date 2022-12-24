@@ -9,10 +9,9 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{ request.user.email }}</h5>
-                        <a href="{% url 'account_logout' %}"><small class="float-right">Cerrar Sesión</small></a>
-                    </div>
-                    <div class="card-body">
-                        <a href="{% url 'account_change_password' %}"><small class="float-right">Cambiar Contraseña</small></a>
+                        <a href="{% url 'account_logout' %}"><small class="float-right"> Cerrar Sesión </small></a>
+                        <br>
+                        <a href="{% url 'account_change_password' %}"><small class="float-right"> Cambiar Contraseña </small></a>
                     </div>
                     
                     <hr>
