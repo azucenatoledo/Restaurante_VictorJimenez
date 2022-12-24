@@ -11,13 +11,19 @@
                         <h5 class="card-title">{{ request.user.email }}</h5>
                         <a href="{% url 'account_logout' %}"><small class="float-right">Cerrar Sesión</small></a>
                     </div>
-                    <hr />
-                    <h5 class="card-title">Tus ordenes</h5>
+                    <div class="card-body">
+                        <a href="{% url 'account_change_password' %}"><small class="float-right">Cambiar Contraseña</small></a>
+                    </div>
+                    
+                    <hr>
+                    <div class="site-blocks-table">
+                        <h5 class="card-title"> &nbsp &nbsp Tus ordenes </h5>
+                    </div>
                     <div class="site-blocks-table">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Referencia No.</th>
+                                    <th>Nro. De Referencia </th>
                                     <th>Fecha</th>
                                     <th>Total</th>
                                     <th>Estado de pago</th>
@@ -33,7 +39,7 @@
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="4"> No has realizado ninguna compra </td>
+                                    <td colspan="4"> No has realizado ninguna compra  </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
