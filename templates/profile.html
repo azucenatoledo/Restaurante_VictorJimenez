@@ -8,7 +8,8 @@
                 <h2 class="text-black">Tu perfil</h2>
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ request.user.email }}</h5>
+                        <h6 class="card-title"> Correo electrónico {{ request.user.email }}</h6>
+                        <h6 class="card-title"> Usuario {{ request.user.username}}</h6>
                         <a href="{% url 'account_logout' %}"><small class="float-right"> Cerrar Sesión </small></a>
                         <br>
                         <a href="{% url 'account_change_password' %}"><small class="float-right"> Cambiar Contraseña </small></a>

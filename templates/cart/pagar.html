@@ -5,7 +5,7 @@
 <div class="container">
         <div class="row">
             <div class="col-md-12 mb-0">
-                <a href={% url 'home'%} >Inicio</a>
+                <a href="{% url 'home'%}" >Inicio</a>
                 <span class="mx-2 mb-0">/</span>
                 <strong class ="text-block">Pago</strong>
                 <span class="mx-2 mb-0"></span>
@@ -83,7 +83,7 @@
                                             <td>${{orden.get_subtotal}}</td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Total de la Orden</strong></td>
+                                            <td><strong class="text-black font-weight-bold" >Total de la Orden</strong></td>
                                             <td><strong class="text-black font-weight-bold">${{orden.get_total}}</strong></td>
                                         </tr>
                                         </tbody>
