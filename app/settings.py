@@ -24,7 +24,7 @@ DEBUG = 'RENDER' not in os.environ
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # hostaname de render
 
