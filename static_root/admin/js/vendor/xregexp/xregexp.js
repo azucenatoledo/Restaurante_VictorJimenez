@@ -4089,7 +4089,7 @@ XRegExp.uninstall = function(options) {
  * XRegExp.union(['a+b*c', /(dogs)\1/, /(cats)\1/], 'i');
  * // -> /a\+b\*c|(dogs)\1|(cats)\2/i
  *
- * XRegExp.union([/man.py/, /bear/, /pig/], 'i', {conjunction: 'none'});
+ * XRegExp.union([/man/, /bear/, /pig/], 'i', {conjunction: 'none'});
  * // -> /manbearpig/i
  */
 XRegExp.union = function(patterns, flags, options) {

@@ -24,7 +24,7 @@ DEBUG = 'RENDER' not in os.environ
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # hostaname de render
 
@@ -157,11 +157,12 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Verificacion'
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3  # limite de intentos de inicio de sesion
-
+#REDIRECCION DEPSUES DEL LOGIN
+LOGIN_REDIRECT_URL = '/cart/Tienda'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = '/'
+
 
 LANGUAGE_CODE = 'es-ec'
 TIME_ZONE = 'America/Guayaquil'
