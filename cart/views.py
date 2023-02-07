@@ -76,7 +76,7 @@ class AumentarcantidadView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item=get_object_or_404(ordenIten,id=kwargs['pk'])
         if order_item.cantidad >= 100:
-            messages.info(self.request, "No se puede agregar mas de 100 procutos de un mismo producto"")
+            messages.info(self.request, "No se puede agregar mas de 100 procutos de un mismo producto")
             return redirect("cart:summary")
         else:
             order_item.cantidad += 1
