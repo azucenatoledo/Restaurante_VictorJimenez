@@ -35,7 +35,7 @@
   <a href="{{ signup_url }}">Registrese </a> primero.{% endblocktrans %}</p>
   {% endif %}
 
-  <form class="login" method="POST" action="{% url 'account_login' %}">
+  <form autocomplete="off" class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form|crispy }}
     {% if redirect_field_value %}
