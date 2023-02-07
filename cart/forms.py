@@ -7,6 +7,7 @@ User = get_user_model()
 
 class AddToCartForm(forms.ModelForm):
     bebida=forms.ModelChoiceField(queryset=Bebidavariacion.objects.none())
+    cantidad=forms.IntegerField(min_value=1, max_value=100, initial=1)
     class Meta:
         model=ordenIten
         fields=['cantidad','bebida']
@@ -68,7 +69,7 @@ class AdressForm(forms.Form):
 
             if not data.get('direccion_de_facturacion_2',None):
                 self.add_error("direccion_de_facturacion_2","Por favor complete este campo")
-                
+
             if not data.get('cuidad_de_envio',None):
                 self.add_error("cuidad_de_facturacion","Por favor complete este campo")    
  

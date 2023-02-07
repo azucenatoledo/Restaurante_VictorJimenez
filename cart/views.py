@@ -37,14 +37,18 @@ class ProductoDetailView(generic.FormView):
     def form_valid(self, form ):
         order= get_or_set_or_session(self.request)
         producto=self.get_object()
-        
+        #visualizar los datos del formulario
+
         iten_filter= order.items.filter(
             producto=producto,
             bebida=form.cleaned_data['bebida']
         )
-
+        #si el producto no exxite  existe en el carrito
         if iten_filter.exists():
             item= iten_filter.first()
+            if item.cantidad >= 100:
+                messages.info(self.request, "No se puede agregar mas de 100 procutos de un mismo producto")
+                return redirect("cart:summary")
             item.cantidad += int(form.cleaned_data['cantidad'])
             item.save()
         else:
@@ -52,6 +56,7 @@ class ProductoDetailView(generic.FormView):
             new_item.producto = producto
             new_item.order = order
             new_item.save()
+            print("Agregar producto al carrito cuando el producto no existe")
         return super(ProductoDetailView, self).form_valid(form)
 
 
@@ -70,9 +75,13 @@ class CartView(generic.TemplateView):
 class AumentarcantidadView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item=get_object_or_404(ordenIten,id=kwargs['pk'])
-        order_item.cantidad += 1
-        order_item.save()
-        return redirect("cart:summary")    
+        if order_item.cantidad >= 100:
+            messages.info(self.request, "No se puede agregar mas de 100 procutos de un mismo producto"")
+            return redirect("cart:summary")
+        else:
+            order_item.cantidad += 1
+            order_item.save()
+            return redirect("cart:summary")
 
 class DisminuirCantidadView(generic.View):
     def get(self, request, *args, **kwargs):

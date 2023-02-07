@@ -33,7 +33,8 @@ class Direccion(models.Model):
 
     class Meta:
         verbose_name_plural='Direcciones'
-    
+
+#Toca agregar la varibale prodcuctos maximo por cada producto que se puede comprar
 class Producto(models.Model):
     id = models.BigAutoField(primary_key=True)
     title= models.CharField(max_length=150)
@@ -45,6 +46,11 @@ class Producto(models.Model):
     actualizado = models.DateTimeField(auto_now=True)
     activado= models.BooleanField(default=False)
     avalible_bebida=models.ManyToManyField(Bebidavariacion)
+    #cantidad maxima de productos
+    #cantidad_maxima_productos=models.PositiveIntegerField(default=1,blank=True,null=True)
+    #Stock del producto
+    #stock=models.PositiveIntegerField(default=1,blank=True,null=True)
+
     def __str__(self):
         return self.title
 
@@ -53,6 +59,10 @@ class Producto(models.Model):
     #para mostar el precio
     def get_precio(self):
         return "{:.2f}".format(self.precio/100)
+    """
+    def get_stock(self):
+        return self.stock
+    """
 #clase inetermedio
 class ordenIten(models.Model):
     id = models.BigAutoField(primary_key=True)
