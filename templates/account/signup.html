@@ -9,7 +9,7 @@
 <div class="container">
 <h1>{% trans "Registrate" %}</h1>
 
-<p>{% blocktrans %}¿Sí ya tienes una cuenta? Por favor <a href="{{ login_url }}">Inicia sessión</a>.{% endblocktrans %}</p>
+<p>{% blocktrans %}¿Sí ya tienes una cuenta? Por favor <a href="{{ login_url }}">Inicia sesión</a>.{% endblocktrans %}</p>
 
 <form autocomplete="off" class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}

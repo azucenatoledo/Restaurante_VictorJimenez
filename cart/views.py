@@ -2,9 +2,9 @@ import json
 import datetime
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
-from .models import Direccion, Orden, Producto,ordenIten,Pago
+from .models import Direccion, Orden, Producto, ordenIten, Pago
 from .utlis import get_or_set_or_session
-from .forms import  AddToCartForm,AdressForm
+from .forms import AddToCartForm, AdressForm
 from django.shortcuts import get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.conf import settings
@@ -114,28 +114,28 @@ class PagarView(generic.FormView):
 
         
         if selecionar_direccion_de_facturacion:
-            orden.facturacion_direccion=selecionar_direccion_de_facturacion
+            orden.direccion_de_facturacion=selecionar_direccion_de_facturacion
         else:
             direccion=Direccion.objects.create(
-                addres_type='B',
+                tipo_de_direccion='B',
                 user=self.request.user,
                 direccion_line_1=form.cleaned_data['direccion_de_facturacion_1'],
                 direccion_line_2=form.cleaned_data['direccion_de_facturacion_2'],
-                cuidad=form.cleaned_data['cuidad_de_facturacion'],
+                ciudad=form.cleaned_data['ciudad_de_facturacion'],
             )
-            orden.facturacion_direccion = direccion
+            orden.direccion_de_facturacion = direccion
 
         if selecionar_direccion_de_envio :
-            orden.envio_direccion=selecionar_direccion_de_envio
+            orden.direccion_de_envio=selecionar_direccion_de_envio
         else:
             direccion=Direccion.objects.create(
-                addres_type='S',
+                tipo_de_direccion='S',
                 user=self.request.user,
                 direccion_line_1=form.cleaned_data['direccion_de_envio_1'],
                 direccion_line_2=form.cleaned_data['direccion_de_envio_2'],
-                cuidad=form.cleaned_data['cuidad_de_envio'],
+                ciudad=form.cleaned_data['ciudad_de_envio'],
             )
-            orden.envio_direccion = direccion
+            orden.direccion_de_envio = direccion
     
         orden.save()
 
@@ -175,10 +175,10 @@ class ConfirmOrdenView(generic.View):
             metodo_pago = 'Paypal'
         )
         pago.save()
-        orden.ordenn=True
-        orden.orden_fecha=datetime.date.today()
+        orden.ordenn = True
+        orden.orden_fecha = datetime.date.today()
         orden.save()
-        return reverse('cart:gracias'),JsonResponse({"data":"Success"})
+        return reverse('cart:gracias'), JsonResponse({"data":"Success"})
         
 
     

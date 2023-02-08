@@ -8,8 +8,8 @@ class AddressAdmin(admin.ModelAdmin):
     list_display=[
         'direccion_line_1',
         'direccion_line_2',
-        'cuidad',
-        'addres_type',
+        'ciudad',
+        'tipo_de_direccion',
     ]
 
 admin.site.register(Producto)

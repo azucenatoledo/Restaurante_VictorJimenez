@@ -24,12 +24,12 @@ class Direccion(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     direccion_line_1 = models.CharField(max_length=150)
     direccion_line_2 = models.CharField(max_length=150)
-    cuidad = models.CharField(max_length=150)
-    addres_type = models.CharField(max_length=1,choices=ADDRESS_CHOICES)
+    ciudad = models.CharField(max_length=150)
+    tipo_de_direccion = models.CharField(max_length=1, choices=ADDRESS_CHOICES)
     defecto=models.BooleanField(default=False)
     
     def __str__(self):
-        return f"{self.direccion_line_1},{self.direccion_line_2},{self.cuidad}"
+        return f"{self.direccion_line_1},{self.direccion_line_2},{self.ciudad}"
 
     class Meta:
         verbose_name_plural='Direcciones'
@@ -85,9 +85,9 @@ class Orden(models.Model):
     orden_fecha=models.DateTimeField(blank=True, null=True)
     ordenn=models.BooleanField(default=False)
     ##itens
-    facturacion_direccion= models.ForeignKey(
+    direccion_de_facturacion= models.ForeignKey(
         Direccion, related_name='facturacion_direccion', blank=True, null=True,on_delete=models.SET_NULL)
-    envio_direccion= models.ForeignKey(
+    direccion_de_envio= models.ForeignKey(
         Direccion, related_name='envio_direccion', blank=True,null=True,on_delete=models.SET_NULL)    
     def __str__(self):
         return self.reference_number
