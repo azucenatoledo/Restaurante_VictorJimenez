@@ -219,6 +219,6 @@ if DEBUG is False:
     # configuracion para render en base de datos render
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/postgres',
+            default='postgres://vitacho:SRN5fjept4OwZrNeyQv9yAhB7yTGkMZr@dpg-cfi30e4gqg40kll9qmtg-a/restaurante_qnn8',
             conn_max_age=600
         )}
