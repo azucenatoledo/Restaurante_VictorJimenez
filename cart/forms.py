@@ -6,11 +6,26 @@ User = get_user_model()
 
 
 class AddToCartForm(forms.ModelForm):
-    bebida=forms.ModelChoiceField(queryset=Bebidavariacion.objects.none(),label='ELIGE EL TIPO DE TUS BEBIDAS',help_text='Selecione por favor un tipo de bebida',widget=forms.RadioSelect(attrs={'class':'form-check-input'})  )
-    cantidad=forms.IntegerField(min_value=1, max_value=100, initial=1,label='ELIGE LA CANTIDAD DE TU PRODUCTO',help_text='Selecione por favor una cantidad mayor o igual a 1',widget=forms.NumberInput(attrs={'class':'form-control'}))
+
     class Meta:
         model=ordenIten
         fields=['cantidad','bebida']
+        queryset={
+            'bebida':Bebidavariacion.objects.none(),
+        }
+        labels={
+            'cantidad':'ELIGA LA CANTIDAD DE SU PRODUCTO',
+            'bebida':'ELIGA EL TIPO DE SU BEBIDA',
+        }
+        help_texts={
+            'cantidad':'Selecione por favor una cantidad mayor o igual a 1',
+            'bebida':'Selecione por favor un tipo de bebida',
+        }
+
+        widgets={
+            'cantidad':forms.NumberInput(attrs={'class':'form-control'}),
+            'bebida':forms.RadioSelect(attrs={'class':'form-check-input'}),
+        }
 
     def __init__(self, *args, **kwargs):
         product_id=kwargs.pop('producto_id')   
