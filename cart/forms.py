@@ -34,17 +34,26 @@ class AddToCartForm(forms.ModelForm):
 
 
 class AdressForm(forms.Form):
-    direccion_de_envio_1 = forms.CharField(required=False, help_text=' Av. de la Constitución',
-                                           label='Dirección de envío calle principal')
-    direccion_de_envio_2 = forms.CharField(required=False, help_text=' 10 de Agosto',
-                                           label='Dirección de envío calle secundaria')
-    ciudad_de_envio = forms.CharField(required=False, help_text='Guayaquil', label='Ciudad de envío')
+    direccion_de_envio_1 = forms.CharField(required=False,
+                                           label='Dirección de envío calle principal',
+                                           widget=forms.TextInput(
+                                               attrs={'placeholder': ' Ejemplo: Av. de la Constitución'}))
 
-    direccion_de_facturacion_1 = forms.CharField(required=False, help_text=' Av. de la Constitución',
-                                                 label='Dirección de facturación calle principal')
-    direccion_de_facturacion_2 = forms.CharField(required=False, help_text=' 10 de Agosto',
-                                                 label='Dirección de facturación calle secundaria')
-    ciudad_de_facturacion = forms.CharField(required=False, help_text='Guayaquil', label='Ciudad de facturación')
+    direccion_de_envio_2 = forms.CharField(required=False,
+                                           label='Dirección de envío calle secundaria',
+                                           widget=forms.TextInput(attrs={'placeholder': ' Ejemplo: 10 de Agosto'}))
+    ciudad_de_envio = forms.CharField(required=False, label='Ciudad de envío',
+                                      widget=forms.TextInput(attrs={'placeholder': ' Ejemplo: Guayaquil'}))
+
+    direccion_de_facturacion_1 = forms.CharField(required=False,
+                                                 label='Dirección de facturación calle principal',
+                                                 widget=forms.TextInput(
+                                                     attrs={'placeholder': ' Ejemplo: Av. 8 de Diciembre'}))
+    direccion_de_facturacion_2 = forms.CharField(required=False,
+                                                 label='Dirección de facturación calle secundaria',
+                                                 widget=forms.TextInput(attrs={'placeholder': ' Ejemplo: Colon'}))
+    ciudad_de_facturacion = forms.CharField(required=False, label='Ciudad de facturación',
+                                            widget=forms.TextInput(attrs={'placeholder': ' Ejemplo: Guayaquil'}))
 
     selecionar_direccion_de_envio = forms.ModelChoiceField(
         Direccion.objects.none(), required=False, label='Seleccione una dirección para el envío de su compra'

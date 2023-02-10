@@ -1,4 +1,3 @@
-#va toda la  de nuestros formularios 
 from django import forms
 
 class ContactForm(forms.Form):
