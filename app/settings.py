@@ -2,7 +2,8 @@ import os
 import environ
 import dj_database_url
 import cloudinary_storage
-#from pickle import TRUE
+
+# from pickle import TRUE
 env = environ.Env()
 
 # Leer el archivo .env
@@ -17,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Ambeinte de prueba
 SECRET_KEY = env('SECRET_KEY')
-#DEBUG = True
+# DEBUG = True
 DEBUG = 'RENDER' not in os.environ
 
 # Quick-start development settings - unsuitable for production
@@ -105,7 +106,6 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 if DEBUG:
-    
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -157,12 +157,11 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
 ACCOUNT_EMAIL_SUBJECT_PREFIX = 'Verificacion'
 ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 3  # limite de intentos de inicio de sesion
-#REDIRECCION DEPSUES DEL LOGIN
+# REDIRECCION DEPSUES DEL LOGIN
 LOGIN_REDIRECT_URL = '/cart/Tienda'
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 
 LANGUAGE_CODE = 'es-ec'
 TIME_ZONE = 'America/Guayaquil'
