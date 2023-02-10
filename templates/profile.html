@@ -1,55 +1,59 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="site-sectino">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-m-12">
-                <h2 class="text-black">Tu perfil</h2>
-                <div class="card">
-                    <div class="card-body">
-                        <h6 class="card-title"> Correo electrónico {{ request.user.email }}</h6>
-                        <h6 class="card-title"> Usuario {{ request.user.username}}</h6>
-                        <a href="{% url 'account_logout' %}"><small class="float-right"> Cerrar Sesión </small></a>
-                        <br>
-                        <a href="{% url 'account_change_password' %}"><small class="float-right"> Cambiar Contraseña </small></a>
-                        <br>
-                        <a href="{% url 'account_email' %}"><small class="float-right">Cambiar Correo electronico</small></a>
-                    </div>
-                    
-                    <hr>
-                    <div class="site-blocks-table">
-                        <h5 class="card-title"> &nbsp &nbsp Tus ordenes </h5>
-                    </div>
-                    <div class="site-blocks-table">
-                        <table class="table">
-                            <thead>
+    <div class="site-sectino">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-m-12">
+                    <h2 class="text-black">Tu perfil</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="card-title"> Correo electrónico {{ request.user.email }}</h6>
+                            <h6 class="card-title"> Usuario {{ request.user.username }}</h6>
+                            <a href="{% url 'account_logout' %}"><small class="float-right"> Cerrar Sesión </small></a>
+                            <br>
+                            <a href="{% url 'account_change_password' %}"><small class="float-right"> Cambiar
+                                Contraseña </small></a>
+                            <br>
+                            <a href="{% url 'account_email' %}"><small class="float-right">Cambiar Correo
+                                electronico</small></a>
+                        </div>
+
+                        <hr>
+                        <div class="site-blocks-table">
+                            <h5 class="card-title"> &nbsp &nbsp Tus ordenes </h5>
+                        </div>
+                        <div class="site-blocks-table">
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <th>Nro. De Referencia </th>
+                                    <th>Nro. De Referencia</th>
                                     <th>Fecha</th>
                                     <th>Total</th>
                                     <th>Estado de pago</th>
                                 </tr>
-                            </thead>
-                            <tbody>
+                                </thead>
+                                <tbody>
                                 {% for order in orders %}
-                                <tr>
-                                    <a href="{% url 'cart:order-detail' order.pk %}"><td>{{ order.reference_number }}</td></a>
-                                    <td>{{ order.orden_fecha }}</td>
-                                    <td>{{ order.get_total }}</td>
-                                    <td>{% if order.ordenn %}Pagado{% else %}No pagado{% endif %}</td>
-                                </tr>
+                                    <tr>
+                                        <a href="{% url 'cart:order-detail' order.pk %}">
+                                            <td>{{ order.reference_number }}</td>
+                                        </a>
+                                        <td>{{ order.orden_fecha }}</td>
+                                        <td>{{ order.get_total }}</td>
+                                        <td>{% if order.ordenn %}Pagado{% else %}No pagado{% endif %}</td>
+                                    </tr>
                                 {% empty %}
-                                <tr>
-                                    <td colspan="4"> No has realizado ninguna compra  </td>
-                                </tr>
+                                    <tr>
+                                        <td colspan="4"> No has realizado ninguna compra</td>
+                                    </tr>
                                 {% endfor %}
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 {% endblock content %}

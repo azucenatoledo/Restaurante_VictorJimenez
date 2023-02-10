@@ -5,20 +5,20 @@
 {% block head_title %}{% trans "Desconectar" %}{% endblock %}
 
 {% block content %}
-<div class="container">
-<div class=" col-auto text-center">
-<h1>{% trans "Cerrar sesión" %}</h1>
+    <div class="container">
+        <div class=" col-auto text-center">
+            <h1>{% trans "Cerrar sesión" %}</h1>
 
-<p>{% trans '¿Estás seguro(a) de que quieres cerrar sesión?' %}</p>
+            <p>{% trans '¿Estás seguro(a) de que quieres cerrar sesión?' %}</p>
 
-<form method="post" action="{% url 'account_logout' %}">
-  {% csrf_token %}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-  {% endif %}
-  <button type="submit" class="btn btn-outline-primary"  >{% trans 'Cerrar Sesión' %}</button>
-</form>
-</div>
-</div>
+            <form method="post" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+                <button type="submit" class="btn btn-outline-primary">{% trans 'Cerrar Sesión' %}</button>
+            </form>
+        </div>
+    </div>
 
 {% endblock %}

@@ -67,14 +67,14 @@
                                         <a href="{% url 'profile' %}"><span><i class="fas fa-user"></i></span></a>
 
                                     {% else %}
-                                        <a href="{%url 'account_login'%}"><span><i
+                                        <a href="{% url 'account_login' %}"><span><i
                                                 class="fas fa-sign-in-alt"></i></span></a>
                                     {% endif %}
                                 </li>
                                 <li>
-                                    <a href="{% url 'cart:summary'%}" class="site-cart">
+                                    <a href="{% url 'cart:summary' %}" class="site-cart">
                                         <span><i class="fas fa-shopping-cart"></i></span>
-                                        <span class="count">{{request | cart_iten_count}}</span>
+                                        <span class="count">{{ request | cart_iten_count }}</span>
                                     </a>
                                 </li>
                                 <li class="d-inline-block d-md-none ml-md-0">
