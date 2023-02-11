@@ -25,6 +25,9 @@ class AddToCartForm(forms.ModelForm):
             'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
             'bebida': forms.RadioSelect(attrs={'class': 'form-check-input'}),
         }
+        max_values = {
+            'cantidad': 100,
+        }
 
     def __init__(self, *args, **kwargs):
         product_id = kwargs.pop('producto_id')
